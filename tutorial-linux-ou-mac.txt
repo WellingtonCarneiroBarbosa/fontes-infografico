@@ -1,0 +1,10 @@
+Primeiro, efetue a instalação do Python3 em sua maquina => https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/
+Ou macOS => https://docs.python-guide.org/starting/install3/osx/
+
+Após, abra o terminal na pasta do projeto e execute o seguinte comando:
+
+pip3 install -r requirements.txt
+
+Agora execute:
+
+python3 scraper.py ou clique em cima do arquivo scraper.py :)
