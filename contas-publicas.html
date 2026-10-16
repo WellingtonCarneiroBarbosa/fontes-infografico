@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contas Públicas 2022 vs 2026</title>
+<meta name="description" content="Infográfico vertical: contas públicas do Brasil, ano fechado 2022 versus projeção 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef3f8; --bg2:#dde7f1;
+    --ink:#121826; --ink2:#4b5565; --card:#ffffff; --line:#d7dfe8;
+    --blue:#1769c4; --blue-soft:#dcebfb; --blue-ink:#0f4f99;
+    --orange:#e9731e; --orange-soft:#fde6d4; --orange-ink:#b4530b;
+    --red:#c0262b; --red-soft:#fbe3e3;
+    --green:#1e8a4f;
+    --banner:#0f2b52;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#0f1520; --bg2:#141d2b; --ink:#f1f4f8; --ink2:#a6b0bf; --card:#1a2434; --line:#2b3748; --blue-soft:#17304f; --orange-soft:#4a2a14; --red:#f0666a; --red-soft:#4a2024; --blue-ink:#8fc0f5; --orange-ink:#ffb27d; --green:#5bd38c; --banner:#071a36; } }
+  :root[data-theme="dark"]{ --bg:#0f1520; --bg2:#141d2b; --ink:#f1f4f8; --ink2:#a6b0bf; --card:#1a2434; --line:#2b3748; --blue-soft:#17304f; --orange-soft:#4a2a14; --red:#f0666a; --red-soft:#4a2024; --blue-ink:#8fc0f5; --orange-ink:#ffb27d; --green:#5bd38c; --banner:#071a36; }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  body{display:flex;justify-content:center;padding:16px}
+
+  /* Moldura 9:16 (1080x1920). Escala para caber na tela. */
+  .story{
+    width:1080px;height:1920px;flex:none;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+    border-radius:28px;display:flex;flex-direction:column;padding:56px 52px 48px;
+    transform-origin:top center;
+  }
+  @media (max-width:1112px){
+    body{padding:0}
+    .story{transform:scale(calc(100vw / 1080px));margin-bottom:calc(1920px * (100vw / 1080px) - 1920px);border-radius:0}
+  }
+
+  h1{margin:0;font-size:74px;line-height:.98;font-weight:900;letter-spacing:-.02em;text-align:center}
+  h1 .vs{color:var(--ink2);font-weight:700;font-size:.55em;vertical-align:middle;margin:0 6px}
+  h1 .y22{color:var(--blue)} h1 .y26{color:var(--orange)}
+  .legend{display:flex;justify-content:center;gap:14px;margin:22px 0 26px}
+  .legend span{font-weight:800;font-size:24px;letter-spacing:.04em;text-transform:uppercase;padding:10px 22px;border-radius:999px}
+  .legend .l22{background:var(--blue-soft);color:var(--blue-ink)}
+  .legend .l26{background:var(--orange-soft);color:var(--orange-ink)}
+
+  .grid{display:flex;flex-direction:column;gap:16px;flex:1;justify-content:space-evenly}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px 26px 22px;box-shadow:0 8px 30px rgba(15,43,82,.07)}
+  .head{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+  .head svg{width:44px;height:44px;flex:none}
+  .head h2{margin:0;font-size:36px;font-weight:800;letter-spacing:-.01em;line-height:1}
+  .head .chip{margin-left:auto;font-size:24px;font-weight:800;padding:7px 16px;border-radius:999px;background:var(--red-soft);color:var(--red);white-space:nowrap}
+  .head .chip.up{background:#dff3e7;color:var(--green)}
+  :root[data-theme="dark"] .head .chip.up{background:#153a26}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .head .chip.up{background:#153a26} }
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .col{border-radius:16px;padding:14px 20px 16px;position:relative}
+  .col.c22{background:var(--blue-soft)} .col.c26{background:var(--orange-soft)}
+  .col .yr{font-size:20px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+  .c22 .yr{color:var(--blue-ink)} .c26 .yr{color:var(--orange-ink)}
+  .col .tag{font-size:22px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.03em}
+  .col .val{font-size:48px;font-weight:900;letter-spacing:-.02em;line-height:1.05;margin-top:2px;color:var(--ink)}
+  .col .val.neg{color:var(--red)}
+  .col .val small{font-size:.5em;font-weight:800;letter-spacing:0}
+  .col .pib{font-size:22px;font-weight:700;color:var(--ink2);margin-top:6px}
+
+  .banner{margin-top:18px;background:var(--banner);color:#fff;border-radius:20px;padding:24px 30px}
+  .banner strong{display:block;font-size:32px;line-height:1.15;font-weight:900;letter-spacing:-.01em}
+  .banner span{display:block;margin-top:8px;font-size:24px;font-weight:500;opacity:.85}
+  .src{margin-top:14px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:22px;color:var(--ink2);font-weight:600;text-align:center}
+</style>
+</head>
+<body>
+<section class="story" aria-label="Infográfico Contas Públicas 2022 vs 2026">
+  <h1>CONTAS PÚBLICAS<br><span class="y22">2022</span><span class="vs">vs.</span><span class="y26">2026</span></h1>
+  <div class="legend"><span class="l22">Ano fechado 2022</span><span class="l26">Projeção 2026</span></div>
+
+  <div class="grid">
+
+    <article class="card">
+      <div class="head">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 36l12-12 8 8 16-16"/><path d="M30 16h12v12"/></svg>
+        <h2>PIB Nominal</h2><span class="chip up">+35%</span>
+      </div>
+      <div class="cols">
+        <div class="col c22"><div class="yr">2022</div><div class="val">R$ 10,1 <small>TRILHÕES</small></div></div>
+        <div class="col c26"><div class="yr">2026</div><div class="val">R$ 13,65 <small>TRILHÕES</small></div></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="head">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><rect x="6" y="26" width="8" height="16" rx="1.5"/><rect x="20" y="14" width="8" height="28" rx="1.5"/><rect x="34" y="20" width="8" height="22" rx="1.5"/></svg>
+        <h2>Resultado Primário</h2><span class="chip">virou déficit</span>
+      </div>
+      <div class="cols">
+        <div class="col c22"><div class="yr">2022</div><div class="tag">Superávit</div><div class="val">+R$ 54,9 <small>BI</small></div><div class="pib">+0,6% do PIB</div></div>
+        <div class="col c26"><div class="yr">2026</div><div class="tag">Déficit</div><div class="val neg">−R$ 82,1 <small>BI</small></div><div class="pib">−0,62% do PIB</div></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="head">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><ellipse cx="26" cy="14" rx="14" ry="5"/><path d="M12 14v8c0 2.8 6.3 5 14 5s14-2.2 14-5v-8"/><path d="M12 22v8c0 2.8 6.3 5 14 5s14-2.2 14-5v-8"/><path d="M12 30v6c0 2.8 6.3 5 14 5s14-2.2 14-5v-6"/></svg>
+        <h2>Juros da Dívida</h2><span class="chip">×2,3</span>
+      </div>
+      <div class="cols">
+        <div class="col c22"><div class="yr">2022</div><div class="val neg">−R$ 515,3 <small>BI</small></div><div class="pib">−5,18% do PIB</div></div>
+        <div class="col c26"><div class="yr">2026</div><div class="val neg">−R$ 1,182 <small>TRI</small></div><div class="pib">−8,86% do PIB</div></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="head">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 14a6 6 0 0 1 12 0v4"/><path d="M8 18h32l4 24H4z"/><path d="M18 28l6 6 6-6"/><path d="M24 24v10"/></svg>
+        <h2>Rombo Final</h2><span class="chip">×2,7</span>
+      </div>
+      <div class="cols">
+        <div class="col c22"><div class="yr">2022</div><div class="val neg">−R$ 460,4 <small>BI</small></div><div class="pib">−4,58% do PIB</div></div>
+        <div class="col c26"><div class="yr">2026</div><div class="val neg">−R$ 1,264 <small>TRI</small></div><div class="pib">−9,48% do PIB</div></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="head">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="10" width="14" height="12" rx="5"/><rect x="26" y="26" width="14" height="12" rx="5"/><path d="M18 22l12 4"/><path d="M14 22v4M34 22v4"/></svg>
+        <h2>Dívida Total</h2><span class="chip">+9,4 p.p. do PIB</span>
+      </div>
+      <div class="cols">
+        <div class="col c22"><div class="yr">2022</div><div class="val">R$ 7,22 <small>TRI</small></div><div class="pib">73,5% do PIB</div></div>
+        <div class="col c26"><div class="yr">2026</div><div class="val">R$ 11,10 <small>TRI</small></div><div class="pib">82,9% do PIB</div></div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="banner">
+    <strong>O rombo final mais que triplicou em 4 anos. O custo dos juros disparou.</strong>
+    <span>Posição acumulada em 12 meses até ago/2026.</span>
+  </div>
+  <div class="src"><span>Fonte: BCB, Tesouro Nacional, Projeções de Mercado</span><span>2022 = ano fechado · 2026 = projeção</span></div>
+</section>
+</body>
+</html>
